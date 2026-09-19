@@ -151,19 +151,293 @@ a {
 
 /* Hero */
 .hero {
+    --hero-mark-width: min(245px, 54vw);
+    --hero-mark-height: min(261px, 57.5vw);
+    --hero-mark-gap: 30px;
     position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 140px 0 100px;
+    padding: 112px 0 72px;
     overflow: hidden;
+}
+
+.hero__visual {
+    position: relative;
+    z-index: 2;
+    width: var(--hero-mark-width);
+    height: var(--hero-mark-height);
+    margin: 0 auto var(--hero-mark-gap);
+    perspective: 720px;
+    transform-style: preserve-3d;
+    isolation: isolate;
 }
 
 .hero__content {
     position: relative;
     z-index: 1;
+}
+
+.hero__mark {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    isolation: isolate;
+}
+
+.hero__mark::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    inset: -22% -30%;
+    border-radius: 50%;
+    background:
+        radial-gradient(ellipse at 63% 57%, rgba(224, 91, 37, 0.24) 0%, rgba(196, 69, 14, 0.1) 30%, transparent 64%),
+        radial-gradient(ellipse at 42% 38%, rgba(255, 255, 255, 0.11) 0%, transparent 52%);
+    filter: blur(24px);
+    opacity: 0.92;
+    transform: rotate(-9deg) scale(0.9);
+    animation: hero-mark-scene-light 6.5s ease-in-out 0.8s infinite;
+}
+
+.hero__mark-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.hero__mark-stage::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 12%;
+    bottom: -3%;
+    width: 78%;
+    height: 15%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(196, 69, 14, 0.42) 0%, rgba(196, 69, 14, 0.16) 38%, transparent 72%);
+    filter: blur(15px);
+    opacity: 0.68;
+    transform: scale(0.82);
+    animation: hero-mark-ground 3.8s ease-in-out 0.9s infinite;
+}
+
+.hero__mark-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: 50% 58%;
+    animation: none;
+    will-change: transform;
+}
+
+.hero__mark-tilt,
+.hero__mark-interaction {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.hero__mark-tilt {
+    animation: none;
+    will-change: transform;
+}
+
+.hero__mark-interaction {
+    transform: perspective(820px) rotateX(0deg) rotateY(0deg);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    overflow: visible;
+}
+
+.hero__mark-model {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero__mark-fallback {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    opacity: 0;
+    visibility: visible;
+    shape-rendering: geometricPrecision;
+    filter: drop-shadow(0 16px 20px rgba(0, 0, 0, 0.42));
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.hero__mark-face,
+.hero__mark-accent {
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+}
+
+.hero__mark-accent {
+    fill: #ba4914;
+    transition: fill 0.16s ease, filter 0.16s ease;
+}
+
+.hero__mark--flash .hero__mark-accent {
+    fill: #ba4914;
+    filter: drop-shadow(0 0 10px rgba(186, 73, 20, 0.82));
+}
+
+.hero__mark-fallback--visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero__mark-fallback--hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hero__mark-model {
+    z-index: 2;
+    display: block;
+    overflow: visible;
+    background: transparent;
+    pointer-events: none;
+    opacity: 1;
+}
+
+.hero__mark-aura {
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 57%;
+    width: 128%;
+    height: 128%;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 71% 64%, rgba(213, 83, 25, 0.66) 0%, rgba(196, 69, 14, 0.22) 24%, transparent 55%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 54%);
+    filter: blur(24px);
+    opacity: 0.58;
+    transform: translate(-50%, -50%) scale(0.88);
+    animation: hero-mark-aura 5.4s ease-in-out 1.4s infinite;
+}
+
+.hero__mark-canvas {
+    position: absolute;
+    z-index: 7;
+    inset: -35%;
+    width: 170%;
+    height: 170%;
+    pointer-events: none;
+    overflow: visible;
+    mix-blend-mode: screen;
+}
+
+.hero__mark-burst {
+    position: absolute;
+    z-index: 4;
+    left: 44%;
+    top: 65%;
+    width: 42%;
+    height: 30%;
+    border: 1.4px solid rgba(240, 160, 120, 0.76);
+    border-left-color: transparent;
+    border-radius: 50%;
+    box-shadow: 0 0 16px rgba(196, 69, 14, 0.45), inset 0 0 12px rgba(196, 69, 14, 0.2);
+    opacity: 0.58;
+    transform-origin: 50% 50%;
+    transform: rotate(-25deg) scale(1);
+    animation: hero-mark-burst 4.8s ease-in-out infinite;
+}
+
+.hero__mark-burst::after {
+    content: '';
+    position: absolute;
+    inset: 13%;
+    border: 1px solid rgba(213, 83, 25, 0.5);
+    border-left-color: transparent;
+    border-radius: inherit;
+}
+
+@keyframes hero-mark-hover {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    44% {
+        transform: translate3d(0, -8px, 0) scale(1.025);
+    }
+    72% {
+        transform: translate3d(0, 2px, 0) scale(1.008);
+    }
+}
+
+@keyframes hero-mark-tilt {
+    0%, 100% {
+        transform: rotateX(3deg) rotateY(-8deg) rotateZ(-0.7deg);
+    }
+    35% {
+        transform: rotateX(-5deg) rotateY(10deg) rotateZ(0.9deg);
+    }
+    68% {
+        transform: rotateX(4deg) rotateY(7deg) rotateZ(0.35deg);
+    }
+}
+
+@keyframes hero-mark-scene-light {
+    0%, 100% {
+        opacity: 0.58;
+        transform: rotate(-9deg) scale(0.84);
+    }
+    46% {
+        opacity: 1;
+        transform: rotate(-5deg) scale(1.04);
+    }
+}
+
+@keyframes hero-mark-burst {
+    0%, 100% {
+        opacity: 0.42;
+        transform: rotate(-25deg) scale(0.98);
+    }
+    45% {
+        opacity: 0.9;
+        transform: rotate(-25deg) scale(1.04);
+    }
+    68% {
+        opacity: 0.58;
+        transform: rotate(-25deg) scale(1);
+    }
+}
+
+@keyframes hero-mark-ground {
+    0%, 100% {
+        opacity: 0.38;
+        transform: scale(0.78);
+    }
+    48% {
+        opacity: 0.86;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes hero-mark-aura {
+    0%, 100% {
+        opacity: 0.42;
+        transform: translate(-50%, -50%) scale(0.88);
+    }
+    45% {
+        opacity: 0.72;
+        transform: translate(-50%, -50%) scale(1.06);
+    }
 }
 
 .hero__label {
@@ -178,6 +452,18 @@ a {
     margin-bottom: 24px;
 }
 
+.hero-intro__item {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-intro__item--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .hero__title {
     font-size: clamp(2.6rem, 6.6vw, 6.4rem);
     font-weight: 800;
@@ -185,8 +471,12 @@ a {
     letter-spacing: -0.065em;
     max-width: 1180px;
     margin: 0 auto 32px;
-    min-height: 2.68em;
+    height: 4em;
+    min-height: 4em;
     text-wrap: balance;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero__statement,
@@ -199,12 +489,13 @@ a {
 }
 
 .hero__word {
-    display: inline-block;
+    display: block;
+    min-height: 0.98em;
 }
 
 .hero__word--accent {
     color: var(--brand);
-    text-shadow: 0 0 34px rgba(196, 69, 14, 0.18);
+    text-shadow: inherit;
 }
 
 .hero__claim {
@@ -214,6 +505,7 @@ a {
     font-weight: 500;
     line-height: 1.2;
     letter-spacing: -0.035em;
+    min-height: 1.2em;
 }
 
 .hero__cursor {
@@ -853,10 +1145,17 @@ a {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        --hero-mark-width: min(190px, 48vw);
+        --hero-mark-height: min(203px, 51.1vw);
+        --hero-mark-gap: 28px;
+    }
+
     .hero__title {
         font-size: clamp(2.45rem, 12vw, 4.2rem);
         line-height: 1.02;
         letter-spacing: -0.055em;
+        height: 4.2em;
         min-height: 4.2em;
     }
 
@@ -1033,5 +1332,19 @@ a {
     .logo__img {
         height: 80px;
         max-width: 260px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }

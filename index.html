@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EVOxide — Инженерная команда для нестандартных бизнес-задач</title>
     <meta name="description" content="Автоматизация, интеграция, оптимизация — там, где это сложно. Парсинг, микросервисы, BI, DevOps." />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20260919-source-mark-v13" />
   </head>
   <body>
     <header class="header">
       <div class="container header__inner">
         <a href="#" class="logo">
-          <img src="/png/evoxide_black.png" alt="EVOxide" class="logo__img" />
+          <img src="./png/evoxide_black.png" alt="EVOxide" class="logo__img" />
         </a>
         <nav class="nav">
           <a href="#about" class="nav__link">О нас</a>
@@ -38,8 +38,37 @@
 
     <section class="hero">
       <div class="container hero__content">
-        <p class="hero__label reveal">Инженерная команда</p>
-        <h1 class="hero__title reveal">
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__mark hero__mark--intro" data-mark-motion>
+            <div class="hero__mark-stage">
+              <div class="hero__mark-body">
+                <div class="hero__mark-tilt">
+                  <div class="hero__mark-interaction">
+                    <span class="hero__mark-aura" aria-hidden="true"></span>
+                    <svg class="hero__mark-fallback" viewBox="0 0 499 532" aria-hidden="true" focusable="false">
+                      <defs>
+                        <filter id="hero-mark-white-source" color-interpolation-filters="sRGB">
+                          <feColorMatrix in="SourceGraphic" result="key" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 5 -5 0 0" />
+                          <feComponentTransfer in="key" result="inverse">
+                            <feFuncA type="table" tableValues="1 0" />
+                          </feComponentTransfer>
+                          <feComposite in="inverse" in2="SourceAlpha" operator="in" result="white-mask" />
+                          <feComposite in="SourceGraphic" in2="white-mask" operator="in" />
+                        </filter>
+                      </defs>
+                      <image class="hero__mark-face" href="./png/evoxide_logo_black.png" width="499" height="532" filter="url(#hero-mark-white-source)" />
+                      <path class="hero__mark-accent" fill="#ba4914" d="M230 468 414 357 423 421 230 531Z" />
+                    </svg>
+                    <canvas class="hero__mark-canvas" aria-hidden="true"></canvas>
+                    <span class="hero__mark-burst" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="hero__label hero-intro__item">Инженерная команда</p>
+        <h1 class="hero__title hero-intro__item">
           <span class="hero__statement">
             <span class="hero__word" data-text="Автоматизация."></span>
             <span class="hero__word" data-text="Интеграция."></span>
@@ -48,10 +77,10 @@
           <span class="hero__claim" data-text="Там, где это сложно."></span>
           <span class="hero__cursor" aria-hidden="true">|</span>
         </h1>
-        <p class="hero__subtitle reveal">
+        <p class="hero__subtitle hero-intro__item">
           Парсинг, микросервисы, BI, алгоритмы для производства и DevOps под ключ.
         </p>
-        <div class="hero__actions reveal">
+        <div class="hero__actions hero-intro__item">
           <a href="#contacts" class="btn btn--primary">Обсудить задачу</a>
           <a href="#cases" class="btn btn--ghost">Смотреть кейсы</a>
         </div>
@@ -354,12 +383,12 @@
     <footer class="footer">
       <div class="container footer__inner">
         <a href="#" class="logo">
-          <img src="/png/evoxide_black.png" alt="EVOxide" class="logo__img logo__img--footer" />
+          <img src="./png/evoxide_black.png" alt="EVOxide" class="logo__img logo__img--footer" />
         </a>
         <p>© <span id="year"></span> EVOxide. Инженерные решения для бизнеса.</p>
       </div>
     </footer>
 
-    <script src="/scripts.js"></script>
+    <script src="./scripts.js?v=20260919-source-mark-v12"></script>
   </body>
 </html>
